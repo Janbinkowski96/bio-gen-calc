@@ -14,6 +14,7 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     SQLALCHEMY_ECHO = True
+    MINIFY_PAGE = True
 
 
 class ProductionConfig(Config):
@@ -22,6 +23,7 @@ class ProductionConfig(Config):
     """
 
     DEBUG = False
+    MINIFY_PAGE = True
 
 
 app_config = {

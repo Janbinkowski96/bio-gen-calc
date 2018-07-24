@@ -1,0 +1,34 @@
+{
+  "name": "gene-calc",
+  "version": "1.0.0",
+  "description": "cssmin, jsmin, use es6 features in gene-calc project",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p --progress --config webpack.config.js",
+    "dev-build": "webpack --progress -d --config webpack.config.js",
+    "watch": "webpack --progress -d --config webpack.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szymon6927/bio-gen-calc.git"
+  },
+  "keywords": [
+    "gene-calc",
+    "biotechnology",
+    "biology"
+  ],
+  "author": "Szymon Miks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szymon6927/bio-gen-calc/issues"
+  },
+  "homepage": "https://github.com/szymon6927/bio-gen-calc#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0"
+  }
+}
