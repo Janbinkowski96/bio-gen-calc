@@ -1,6 +1,7 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, abort, Response
 from . import pic
-from .utils import Codominant, Dominant
+from .utils.CodominantCalculation import Codominant
+from .utils.DominantCalculation import Dominant
 
 
 @pic.route('/pic')
@@ -13,15 +14,25 @@ def pic_page():
 
 @pic.route('/pic/send-codominant', methods=['POST'])
 def pic_codominant():
-    data = request.json
-    co_d = Codominant(data)
-    result = co_d.calculate()
-    return jsonify({'data': result})
+    try:
+        data = request.json
+        co_d = Codominant(data)
+        result = co_d.calculate()
+        return jsonify({'data': result})
+    except TypeError:
+        abort(Response("Please check type of input data", 409))
+    except Exception as e:
+        abort(Response(str(e), 400))
 
 
 @pic.route('/pic/send-dominant', methods=['POST'])
 def pic_dominant():
-    data = request.json
-    do = Dominant(data)
-    result = do.calculate()
-    return jsonify({'data': result})
+    try:
+        data = request.json
+        do = Dominant(data)
+        result = do.calculate()
+        return jsonify({'data': result})
+    except TypeError:
+        abort(Response("Please check type of input data", 409))
+    except Exception as e:
+        abort(Response(str(e), 400))

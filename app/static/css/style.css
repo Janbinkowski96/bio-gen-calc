@@ -1,4 +1,5 @@
 body {
+    font-family: 'Lato', sans-serif;
     background: linear-gradient(to right, rgb(33, 147, 176), rgb(109, 213, 237));
 }
 
@@ -8,10 +9,12 @@ body {
     padding: 0 15px 24px 15px;
     border-radius: 5px;
     margin-top: -14rem;
+    z-index: 999;
+    position: relative;
 }
 
 section {
-    padding: 32px 0;
+    padding: 16px 0;
 }
 
 table .summary {
@@ -49,7 +52,7 @@ table th[scope=row] {
 }
 
 .result-value {
-    padding: 5px;
+    padding: 5px 15px;
     border: 1px solid #ccc;
     border-radius: .25rem;
     font-weight: bold;
@@ -77,6 +80,7 @@ table th[scope=row] {
 
 .form-control {
     padding: .375rem .25rem;
+    min-width: 85px;
 }
 
 .wrapper .jumbotron-fluid {
@@ -136,7 +140,7 @@ table th[scope=row] {
     right: 20px;
     margin-bottom: 0;
     bottom: 20px;
-    z-index: 100;
+    z-index: 999;
     background-color: #008bd0 !important;
 }
 
@@ -277,19 +281,312 @@ table th[scope=row] {
     border-bottom: 1px solid #cacaca;
 }
 
+.left-desc {
+    float: left;
+    margin: 0;
+    padding: 10px 0 0 0;
+    list-style: none;
+    position: relative;
+}
+
+.top-desc, .left-desc {
+    font-weight: bold;
+}
+
+.geometric-info {
+    display: none;
+    margin: 3rem 0 7rem 0;
+}
+
+.form-control, .btn {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.table .form-control {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.hardy-weinberg .card,
+.pic-h .card,
+.chi-independence .card,
+.chi-goodness .card {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.jumbotron h1 {
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    font-weight: 400;
+}
+
+.homepage h2 {
+    font-size: 1.4rem;
+}
+
+.calcuate-codominant, .generate-table {
+    display: none;
+}
+
+.top-desc {
+    margin: 0 auto;
+    display: flex;
+}
+
+.top-desc-item {
+    flex-grow: 1;
+}
+
+.materials-methods {
+    word-break: break-all;
+}
+
+.card-header .card-title {
+    font-size: 22px;
+    padding-left: 5px;
+}
+
+.card-header .info-icon {
+    font-size: 22px;
+}
+
+.card-body a {
+    color: #fff;
+    /* font-weight: 400; */
+}
+
+.card-body a:hover {
+    font-weight: 700;
+    color: #fafafa;
+}
+
+/* Particles button */
+.particles {
+    position: relative;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.particles-canvas {
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.particles-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.particles-button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    border-radius: 5px;
+    border: 0;
+    margin: 0;
+    padding: 1.5rem 3rem;
+}
+
+.particles-button:focus {
+    outline: none;
+}
+
+.sequences-tools-results .result-name,
+.raw-seq-results .result-name {
+    max-width: 100%;
+}
+
+.sequences-tools-results .result-value,
+.raw-seq-results .result-value {
+    min-width: 100%;
+    border: none;
+}
+
+.sequences-tools-results .equal-char,
+.raw-seq-results .equal-char {
+    display: none;
+}
+
+.sequences-tools-results .result-name div,
+.sequences-tools-results .result-value div,
+.raw-seq-results .result-name div,
+.raw-seq-results .result-value div {
+    line-height: 15px;
+}
+
+.raw-sequences, .upload-sequences, .sequences-form-genebank {
+    display: none;
+}
+
+.raw-sequences, .upload-sequences, .sequences-form-genebank {
+    width: 100%;
+}
+
+.upload-file-info {
+    height: 37px;
+    line-height: 40px;
+    display: inline-block;
+    width: 75%;
+    border: 1px solid #cacaca;
+    padding-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.alignment-wrapper {
+    padding: 0 15px;
+    background: #fafafa;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.alignment-wrapper .title {
+    line-height: 36px;
+    font-weight: bold;
+}
+
+.alignment {
+    display: inline;
+    float: left;
+    text-align: left;
+    overflow-x: scroll;
+}
+
+.dotplot-img {
+    margin: 0 auto;
+}
+
+.cookieinfo {
+    border-top: 1px solid #ccc;
+}
+
+.cookieinfo a {
+    font-weight: bold;
+}
+
+.contact-form input, .contact-form textarea {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.matrix-wrapper table {
+    margin: 0 auto;
+}
+
+.dataframe {
+    border: none;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+
+.dataframe th, .dataframe td {
+    padding: 5px 10px;
+}
+
+.dataframe tr th {
+    background: #e9ecef;
+}
+
+.dataframe thead th {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.dataframe tbody th {
+    border-right: 1px solid #dee2e6;
+}
+
+.newsletter-form {
+    border-bottom: 1px solid #fff;
+    padding: 1rem 0;
+}
+
+.mailchimp-policy {
+    font-size: 11px;
+}
+
+.form-check-label {
+    font-size: 11px;
+}
+
+.person {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.person img {
+    width: 50%;
+}
+
+.profile-desc {
+    text-align: left;
+}
+
+.logo {
+    width: 50%;
+    text-align: center;
+    border-radius: 15px;
+    background: #fff;
+}
+
+@media (min-width: 1331px) and (max-width: 1400px) {
+    .navbar-nav li {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1330px) {
+    .navbar-nav li {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .materials-methods img {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .navbar-nav li {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 991px) {
     .h1, h1 {
         font-size: 2.5rem !important;
     }
+
+    .navbar-nav li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dataframe th, .dataframe td {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 576px) {
+    .footer {
+        font-size: 12px;
+    }
+
     .footer p {
         text-align: center !important;
     }
 
     .footer .app-name {
-        font-size: 20px;
+        font-size: 14px;
         font-weight: bold;
         margin-bottom: 5px;
     }
@@ -298,5 +595,11 @@ table th[scope=row] {
 @media (max-width: 480px) {
     .wrapper {
         margin-top: -10rem;
+    }
+    .mailchimp-policy {
+        margin-top: 10px;
+    }
+    .logo {
+        width: 100%;
     }
 }

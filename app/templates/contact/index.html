@@ -1,31 +1,64 @@
 {% extends "base.html" %}
-{% block title %}Chi Square{% endblock %}
+
+{% block title %}{{ module_desc.seo_title }}{% endblock %}
+{% block seo_desc %}{{ module_desc.seo_desc }}{% endblock %}
+{% block seo_keywords %}{{ module_desc.seo_keywords }}{% endblock %}
+
 {% block body %}
-<div class="wrapper">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4 text-center">{{ title }}</h1>
-    </div>
-  </div>
-  <section class="contact-us">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <h5 class="text-center"><a href="mailto:jan.binkowski96@gmail.com">Jan Bińkowski [researcher]</a><sup>[1]</sup>
-          & <a href="mailto:miks.szymon@gmail.com">Szymon Miks [developer]</a> <sup>[2]</sup></h5>
+  <div class="wrapper">
+    {% include 'utils/module_top_block.html' %}
 
-        <ol>
-          <li class="mb-2">Faculty of Biotechnology and Animal Husbandry, West Pomeranian
-            University of Technology, Szczecin 70-311, Poland.
-          </li>
-          <li>Faculty of Electronics, Telecommunications and Informatics, Gdańsk University of Technology, Gdańsk,
-            80-233, Poland.
-          </li>
-        </ol>
+    <section class="contact-us">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 col-12">
+          {{ module_desc.text|safe }}
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+          <form class="contact-form" action="{{ url_for('contact.contact_page') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.name.label }}
+              {{ form.name(class_="form-control", placeholder="your name") }}
+            </div>
+            <div class="form-group">
+              {{ form.email.label }}
+              {{ form.email(class_="form-control", placeholder="your e-mail") }}
+            </div>
+            <div class="form-group">
+              {{ form.message.label }}
+              {{ form.message(class_="form-control", rows=6, placeholder="your message") }}
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="private-policy" required>
+              <label class="form-check-label" for="private-policy">
+                I agree to have my personal data processed within the scope necessary for the keep 
+                the highest quality of service. I have read and understood the data 
+                <a href="{{ url_for('privacy_policy.privacy_policy_page') }}">privacy policy</a>.
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send</button>
 
-        <p class="font-weight-bold text-center">Scientific supervisor: Prof. Marek Kmieć.</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} mt-3" role="alert">{{ message|safe }}</div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
 
+            {% for field in form.errors %}
+              {% for error in form.errors[field] %}
+                <div class="alert alert-danger mt-3" role="alert">{{ error }}</div>
+              {% endfor %}
+            {% endfor %}
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+      <div class="row mt-5">
+        <div class="col-md-12 col-sm-12">
+          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11VbpuHdCFrILx2hnEgyPIz6iyF5F6LDI" width="100%" height="580" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
 {% endblock %}

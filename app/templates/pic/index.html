@@ -1,22 +1,17 @@
-<!-- app/templates/home/index.html -->
-
 {% extends "base.html" %}
-{% block title %}Hardy Weinber{% endblock %}
+
+{% block title %}{{ module_desc.seo_title }}{% endblock %}
+{% block seo_desc %}{{ module_desc.seo_desc }}{% endblock %}
+{% block seo_keywords %}{{ module_desc.seo_keywords }}{% endblock %}
+
 {% block body %}
 <div class="wrapper">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4 text-center">{{ title }}</h1>
-    </div>
-  </div>
+  {% include 'utils/module_top_block.html' %}
+
+  {% include 'utils/info_block.html' %}
 
   <section class="pic-h">
     <div class="row">
-      <div class="col-md-12 co-sm-12 co-xs-12">
-        <div class="alert alert-warning" role="alert">
-          Use numbers of alleles in integer form
-        </div>
-      </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
           <label for="type-of-marker">Type of marker</label>
@@ -30,7 +25,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12 markers-options">
         <div class="codominant-wrapper">
           <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
                 <label for="alleles-number">Number of alleles</label>
                 <input id="alleles-number" type="number" min="0" class="form-control non-negative alleles-number"
@@ -38,19 +33,21 @@
               </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 col-xs-6 event-button">
+            <div class="col-md-6 col-sm-6 col-xs-6 event-button">
               <button type="submit" class="btn btn-block btn-primary generate-codominant">Generate!</button>
             </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-6 event-button">
-              <button type="submit" class="btn btn-block btn-success calcuate-codominant">Calculate!</button>
-            </div>
-
           </div>
+
           <div class="row">
-            <div class="col-md-6 offset-md-3 col-sm-12 col-xs-12">
+            <div class="col-md-6 offset-md-3 col-sm-12 col-xs-12 mt-4">
               <div class="codominant-messages"></div>
               <div class="inputs-wrapper"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 col-xs-12 event-button">
+              <button type="submit" class="btn btn-block btn-danger calcuate-codominant">Calculate!</button>
             </div>
           </div>
 
@@ -62,7 +59,7 @@
           <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
-                <label for="amplified-marker">Number of amplified marker</label>
+                <label for="amplified-marker">Number or frequency of amplified marker</label>
                 <input id="amplified-marker" type="number" min="0" class="form-control non-negative amplified-marker"
                        placeholder="amplified marker">
               </div>
@@ -70,14 +67,14 @@
 
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
-                <label for="absecnce-marker">Number of absecnce marker</label>
-                <input id="absecnce-marker" type="number" min="0" class="form-control non-negative absecnce marker"
+                <label for="absecnce-marker">Number or frequency of absecnce marker</label>
+                <input id="absecnce-marker" type="number" min="0" class="form-control non-negative absecnce-marker"
                        placeholder="absecnce marker">
               </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 col-xs-6 event-button">
-              <button type="submit" class="btn btn-block btn-success calcuate-dominant">Calculate!</button>
+            <div class="col-md-4 col-sm-6 col-xs-6 event-button">
+              <button type="submit" class="btn btn-block btn-danger calcuate-dominant">Calculate!</button>
             </div>
           </div>
 
@@ -96,6 +93,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/Pic.js') }}"></script>
-<script src="{{ url_for('static', filename='js/PicEvents.js') }}"></script>
+<script src="{{ url_for('static', filename='js/Pic.js') }}?ver={{ css_js_ver }}"></script>
+<script src="{{ url_for('static', filename='js/PicEvents.js') }}?ver={{ css_js_ver }}"></script>
 {% endblock %}

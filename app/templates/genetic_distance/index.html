@@ -1,32 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Chi Square{% endblock %}
+
+{% block title %}{{ module_desc.seo_title }}{% endblock %}
+{% block seo_desc %}{{ module_desc.seo_desc }}{% endblock %}
+{% block seo_keywords %}{{ module_desc.seo_keywords }}{% endblock %}
+
 {% block body %}
-
-{% include 'utils/loader.html' %}
-
 <div class="wrapper">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4 text-center">{{ title }}</h1>
-    </div>
-  </div>
+  {% include 'utils/module_top_block.html' %}
+
+  {% include 'utils/info_block.html' %}
+
   <section class="genetic-distance">
     <div class="row">
-      <div class="col-md-3 offset-md-3 col-sm-6 col-xs-6">
+      <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 col-sm-6 col-12">
         <div class="form-group">
           <label for="taxon-number">Number of populations:</label>
           <input id="taxon-number" type="number" min="0" class="form-control taxon-number">
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-6 col-xs-6">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <div class="form-group">
-          <label for="locus-number">Number of locus:</label>
+          <label for="locus-number">Number of loci:</label>
           <input id="locus-number" type="number" min="0" class="form-control locus-number">
         </div>
       </div>
 
-      <div class="col-md-3 offset-md-3 col-sm-6">
+      <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 col-sm-6 col-12">
         <div class="form-group">
           <label for="type-of-distance">Type of distance</label>
           <select class="form-control" id="type-of-distance">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-6">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <div class="form-group">
           <label for="type-of-dendrogram">Type of dendrogram</label>
           <select class="form-control" id="type-of-dendrogram">
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 offset-md-3 col-sm-6 col-xs-6 event-button">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12 event-button">
         <button type="submit" class="btn btn-block btn-primary alleles-inputs-generate">Generate!</button>
       </div>
 
@@ -61,25 +61,34 @@
       <div class="col-md-6 offset-md-3 col-sm-12 alleles-wrapper mt-4"></div>
     </div>
 
+    <div class="row mt-3">
+      <div class="col-md-6 offset-md-3 col-sm-12">
+        <button type="submit" class="btn btn-block btn-success generate-table mb-3">Generate table</button>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-12 col-sm-12 genetic-distance-table"></div>
       <div class="col-md-6 offset-md-3">
-        <button type="submit" class="btn btn-block btn-success calcuate-distance">Calculate!</button>
+        <button type="submit" class="btn btn-block btn-danger calcuate-distance mt-3">Calculate!</button>
       </div>
     </div>
 
     <div class="genetic-distance-results mt-5">
-      <div class="row">
+      <div class="row success">
         <div class="col-md-10 offset-md-1 col-sm-12 text-center">
           <div class="result-desc"><p class="pb-1">Distance matrix: </p></div>
           <div class="matrix-wrapper"></div>
         </div>
-        <div class="col-md-10 offset-md-1 col-sm-12 text-center">
+        <div class="col-md-10 offset-md-1 col-sm-12 mt-5 text-center">
           <div class="result-desc"><p class="pb-1">Dendogram: </p></div>
           <div class="dendrogram-wrapper"></div>
         </div>
       </div>
+      <div class="error"></div>
     </div>
+
+    <div class="pdf-wrapper"></div>
 
   </section>
 </div>
@@ -89,7 +98,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
-<script src="{{ url_for('static', filename='js/GeneticDistance.js') }}"></script>
-<script src="{{ url_for('static', filename='js/GeneticDistanceEvents.js') }}"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS_SVG' async></script>
+<script src="{{ url_for('static', filename='js/GeneticDistance.js') }}?ver={{ css_js_ver }}"></script>
+<script src="{{ url_for('static', filename='js/GeneticDistanceEvents.js') }}?ver={{ css_js_ver }}"></script>
 {% endblock %}

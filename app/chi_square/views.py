@@ -1,8 +1,7 @@
-# app/chi_square/views.py
-
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, abort, Response
 from . import chi_square
-from .utils import ChiSquareCalculation, ChiSquareGoodness
+from .utils.ChiSquareCalculation import ChiSquareCalculation
+from .utils.ChiSquareGoodness import ChiSquareGoodness
 
 
 @chi_square.route('/chi-square-page')
@@ -15,19 +14,29 @@ def chi_square_page():
 
 @chi_square.route('/chi-square/send-data', methods=['POST'])
 def get_data():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    chi = ChiSquareCalculation(data)
-    result = chi.chi_square()
+        chi = ChiSquareCalculation(data)
+        result = chi.calculate()
 
-    return jsonify({'data': result})
+        return jsonify({'data': result})
+    except TypeError:
+        abort(Response("Please check type of input data", 409))
+    except Exception as e:
+        abort(Response(str(e), 400))
 
 
 @chi_square.route('/chi-square/send-data-goodness', methods=['POST'])
 def get_goodness_data():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    chi_goodness = ChiSquareGoodness(data["observed"], data["expected"])
-    result = chi_goodness.chi_square_goodness()
+        chi_goodness = ChiSquareGoodness(data["observed"], data["expected"])
+        result = chi_goodness.calculate()
 
-    return jsonify({'data': result})
+        return jsonify({'data': result})
+    except TypeError:
+        abort(Response("Please check type of input data", 409))
+    except Exception as e:
+        abort(Response(str(e), 400))
