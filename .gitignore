@@ -6,9 +6,6 @@ pip-selfcheck.json
 .vscode
 __pycache__
 .idea
-<<<<<<< HEAD
-node_modules
-=======
 instance
 .pytest_cache
->>>>>>> 1460513e8c51b72a7d50aa1ff18b69ef0bbea73e
+node_modules

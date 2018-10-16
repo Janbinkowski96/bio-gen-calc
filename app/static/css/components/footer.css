@@ -1,0 +1,35 @@
+.footer {
+    background: #26517F;
+    border-top: 1px solid #fff;
+    color: #fff;
+    margin-top: 20px;
+    padding: 16px 0;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+.footer a {
+    font-weight: bold;
+    color: #fff;
+}
+
+.mailchimp-policy {
+    font-size: 11px;
+}
+
+.newsletter-form {
+    border-bottom: 1px solid #fff;
+    padding: 1rem 0;
+}
+
+.cookieinfo {
+    border-top: 1px solid #ccc;
+}
+
+.cookieinfo a {
+    font-weight: bold;
+}

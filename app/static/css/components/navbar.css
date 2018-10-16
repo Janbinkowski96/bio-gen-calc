@@ -1,0 +1,12 @@
+.navbar {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #fff;
+}
+
+.navbar-nav li {
+    font-size: 17px;
+}
+
+.nav-link {
+    letter-spacing: -0.05em;
+}
