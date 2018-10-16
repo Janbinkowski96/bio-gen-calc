@@ -1,11 +1,14 @@
 // webpack v4
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
 module.exports = {
-  entry: { main: './js/app.js' },
+  entry: ['./js/app.js', './css/style.css'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'bundle.min.js'
   },
   module: {
     rules: [
@@ -18,15 +21,27 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: ['css-loader']
-          })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
       }
     ]
   },
-  plugins: [ 
-    new ExtractTextPlugin({filename: 'style.css'})
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "styles.min.css",
+      chunkFilename: "[id].css"
+    })
   ]
-};;
+};

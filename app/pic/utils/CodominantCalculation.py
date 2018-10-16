@@ -1,4 +1,3 @@
-from flask import abort, Response
 import itertools
 from ...helpers.result_aggregator import add_result
 
