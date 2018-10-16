@@ -1,11 +1,6 @@
 # app/__init__.py
 
 from datetime import datetime
-<<<<<<< HEAD
-from flask import Flask, render_template
-from flask import Blueprint
-from flask_htmlmin import HTMLMIN
-=======
 import pdfkit
 from flask import Flask, render_template, request, make_response, abort, Response, send_from_directory
 from .database import db
@@ -16,7 +11,6 @@ from flask_htmlmin import HTMLMIN
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_compress import Compress
->>>>>>> 1460513e8c51b72a7d50aa1ff18b69ef0bbea73e
 
 # local imports
 from config import app_config
@@ -31,15 +25,8 @@ def create_app(config_name):
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
 
-<<<<<<< HEAD
-    HTMLMIN(app)
-
-    from .home import home as home_blueprint
-    app.register_blueprint(home_blueprint)
-=======
     Compress(app)
     HTMLMIN(app)
->>>>>>> 1460513e8c51b72a7d50aa1ff18b69ef0bbea73e
 
     admin = run_admin()
     admin.init_app(app)
@@ -62,7 +49,7 @@ def create_app(config_name):
     @app.route('/robots.txt')
     @app.route('/sitemap.xml')
     def serve_static_seo_files():
-        return send_from_directory(app.static_folder, request.path[1:])
+        return send_from_directory(app.root_path, request.path[1:])
 
     @app.route('/generate-pdf', methods=['POST'])
     def generate_pdf():

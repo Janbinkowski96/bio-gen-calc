@@ -1,4 +1,4 @@
-export class Validation {
+class Validation {
 
   keyAllowed(key) {
     let keys = [8, 9, 13, 16, 17, 18, 19, 20, 27, 46, 48, 49, 50,
